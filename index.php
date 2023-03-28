@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 // Проверяем ошибки.
 $errors = FALSE;
-if (empty($_POST['fio'])) {
+if (empty($_POST['name'])) {
   print('Заполните имя.<br/>');
   $errors = TRUE;
 }
@@ -30,6 +30,27 @@ if (empty($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/
   $errors = TRUE;
 }
 
+if (empty($_POST['email'])) {
+  print('Заполните email.<br/>');
+  $errors = TRUE;
+}
+
+if (empty($_POST['gender'])) {
+  print('Заполните гендер.<br/>');
+  $errors = TRUE;
+}
+if (empty($_POST['limbs'])) || !is_numeric($_POST['limbs']) {
+  print('Заполните количество конечностей.<br/>');
+  $errors = TRUE;
+}
+if (empty($_POST['superpowers[]'])) {
+  print('Расскажите о своих способностях.<br/>');
+  $errors = TRUE;
+}
+if (empty($_POST['bio'])) {
+  print('Заполните биографию.<br/>');
+  $errors = TRUE;
+}
 
 // *************
 // Тут необходимо проверить правильность заполнения всех остальных полей.
