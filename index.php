@@ -63,15 +63,35 @@ if ($errors) {
 
 // Сохранение в базу данных.
 
-$user = 'db'; // Заменить на ваш логин uXXXXX
-$pass = '123'; // Заменить на пароль, такой же, как от SSH
-$db = new PDO('mysql:host=localhost;dbname=test', $user, $pass,
+$user = 'dalertry'; // Заменить на ваш логин uXXXXX
+$pass = '2UNL11wP%K1VQXQ8'; // Заменить на пароль, такой же, как от SSH
+$db = new PDO('mysql:host=localhost;dbname=dalertry', $user, $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); // Заменить test на имя БД, совпадает с логином uXXXXX
 
 // Подготовленный запрос. Не именованные метки.
 try {
-  $stmt = $db->prepare("INSERT INTO application SET name = ?");
-  $stmt->execute([$_POST['fio']]);
+  $stmt = $db->prepare("INSERT INTO zayava SET name = ?, email = ?, year = ?, gender = ?, limbs = ?, bio = ?");
+  $stmt->execute([$_POST['name'], $_POST['email'], $_POST['year'], $_POST['gender'], $_POST['limbs'], $_POST['bio']]);
+  //foreach ($_POST['abilities'] as $ability)
+  //{
+  //  print($ability);
+  //}
+  //$human = "SELECT MAX(id_z) maxidz FROM zayava"; 
+  $max_id = ($db->lastInsertId());
+  foreach ($_POST['abilities'] as $ability) {
+    //print($ability);
+    //$stmt = $db->prepare("INSERT INTO sposob SET tip = ? ");
+    //$stmt->execute([$_POST['$ability']]);
+    $stmt = $db->prepare("INSERT INTO ability SET tip = :mytip");
+    $stmt->bindParam(':mytip', $ability);
+    $stmt->execute();
+
+    $max_id2 = ($db->lastInsertId());
+
+    $stmt = $db->prepare("INSERT INTO sv (id, id2) VALUES (:myid, :myid2)");
+    $stmt->bindParam(':myid', $max_id);
+    $stmt->bindParam(':myid2', $max_id2);
+    $stmt->execute();
 }
 catch(PDOException $e){
   print('Error : ' . $e->getMessage());
@@ -99,3 +119,8 @@ $stmt->execute();
 // Если запись не сохраняется, но ошибок не видно, то можно закомментировать эту строку чтобы увидеть ошибку.
 // Если ошибок при этом не видно, то необходимо настроить параметр display_errors для PHP.
 header('Location: ?save=1');
+
+
+
+
+?>
