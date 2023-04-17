@@ -100,7 +100,7 @@ input:required, select:required, textarea:required {
 </head>
 <body>
   <h1 style="text-align: center;"> Набор героев</h1>
-  <form action="index.html" method="POST">
+  <form action="index.php" method="POST">
   <label for="name">Имя:</label>
   <input type="text" id="name" name="name" required>
 
@@ -126,8 +126,8 @@ input:required, select:required, textarea:required {
   
 
   <label for="superpowers">Сверхспособности:</label>
-  <select id="superpowers" name="superpowers[]" multiple required>
-    <option value="immortality">Бессмертие</option>
+  <select id="superpowers" name="superpowers"  multiple="multiple">
+    <option value="immortality" selected="selected">Бессмертие</option>
     <option value="intangibility">Прохождение сквозь стены</option>
     <option value="levitation">Левитация</option>
   </select>
