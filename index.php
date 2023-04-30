@@ -68,39 +68,70 @@ $user = 'dalertry'; // Заменить на ваш логин uXXXXX
 $pass = '2UNL11wP%K1VQXQ8'; // Заменить на пароль, такой же, как от SSH
 $db = new PDO('mysql:host=localhost;dbname=dalertry', $user, $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); // Заменить test на имя БД, совпадает с логином uXXXXX
- print('Вход в бд.<br/>');
+ //print('Вход в бд.<br/>');
 // Подготовленный запрос. Не именованные метки.
 try {
   $stmt = $db->prepare("INSERT INTO application SET name = ?, email = ?, year = ?, gender = ?, limbs = ?, bio = ?");
   $stmt->execute([$_POST['name'], $_POST['email'], $_POST['year'], $_POST['gender'], $_POST['limbs'], $_POST['bio']]);
-  print('Вход в бд2.<br/>');
-}
-catch(PDOException $e){
+  if(!$stmt){
+    print('Error - '. $stmt->errorInfo());
+  }
+  //print('Вход в бд2.<br/>');
+}catch(PDOException $e){
   print('Error : ' . $e->getMessage());
   exit();
 }
-$user_id = $db->lastInsertId();
-foreach ($_POST['abilities'] as $ability) {
+$application_id = $db->lastInsertId();
+$superpowers = $_POST['superpowers'];
+foreach ($superpowers as $ability) {
   try{
-    $max_id = ($db->lastInsertId());
-  
-    $stmt = $db->prepare("INSERT INTO ability SET ability = :myability");
-    $stmt->bindParam(':myability', $ability);
-    $stmt->execute();
-    $max_id2 = ($db->lastInsertId());
-    $stmt = $db->prepare("INSERT INTO sv (id, id2) VALUES (:myid, :myid2)");
-    $stmt->bindParam(':myid', $max_id);
-    $stmt->bindParam(':myid2', $max_id2);
-    $stmt->execute();
-     print('Вход в бд3.<br/>');
-  }
+      $sql = 'INSERT INTO collect (user_id, ability) VALUES (:user_id, :ability)';
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute([$application_id,$ability]);
 
-  catch(PDOException $e){
+
+      $sql = 'INSERT INTO collect (user_id, ability) VALUES (:user_id, :ability)';
+      $stmt = $db->prepare($sql);
+      $stmt->execute(['user_id' => $application_id, 'ability' => $ability]);
+      
+      if($stmt->rowCount() > 0) {
+        print( "New record created successfully");
+      } else {
+        print( "Error: " . $sql . "<br>" . mysqli_error($conn);
+      }
+     // $stmt = $db->prepare("INSERT INTO sv SET id = ?, id2 = ?");
+     // $stmt->execute([$id,$_POST['superpowers']]);]
+      // if (mysqli_query($stmt, $sql)) {
+      //   echo "New record created successfully";
+      // } else {
+      //  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+
+      // }
+      //    var_dump($_POST);
+      // if(!$stmt){
+      //   print('Error - ' . $stmt->errorInfo());
+      // }  
+  } catch(PDOException $e) {
    print('Error : ' . $e->getMessage());
     exit();
   }
-}
 
+  //foreach () {
+    
+}
+//}
+
+
+
+//$max_id = ($db->lastInsertId());
+  /// $stmt = $db->prepare("INSERT INTO ability SET ability = :myability");
+   // $stmt->bindParam(':myability', $ability);
+   /// $stmt->execute();
+   // $max_id2 = ($db->lastInsertId());
+  //  $stmt = $db->prepare("INSERT INTO sv (id, id2) VALUES (:myid, :myid2)");
+  //  $stmt->bindParam(':myid', $max_id);
+  //  $stmt->bindParam(':myid2', $max_id2);
+  //  $stmt->execute();
 //  stmt - это "дескриптор состояния".
  
 //  Именованные метки.

@@ -102,7 +102,7 @@ input:required, select:required, textarea:required {
   <h1 style="text-align: center;"> Набор героев</h1>
   <form action="index.php" method="POST">
   <label for="name">Имя:</label>
-  <input type="text" id="name" name="name" required>
+  <input type="text" id="name" name="name" value=$_COOKIE[username]; required>
 
   <label for="email">E-mail:</label>
   <input type="email" id="email" name="email" required>
@@ -139,8 +139,9 @@ input:required, select:required, textarea:required {
   
 
   <button type="submit">Отправить</button>
+  <?php setcookie($name="username", $value=name, strtotime( '+1 day' ), $path=false,
+$domain, $secure=true, $httponly=true);?>
 </form>
 
 </body>
 </html>
-    
