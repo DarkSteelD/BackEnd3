@@ -76,7 +76,7 @@ button[type="submit"] {
 }
 
 /* Стили для обязательных полей */
-input:required, select:required, textarea:required {
+input: , select: , textarea:  {
   border: 2px solid #dda0dd;
 }
 
@@ -102,13 +102,13 @@ input:required, select:required, textarea:required {
   <h1 style="text-align: center;"> Набор героев</h1>
   <form action="index.php" method="POST">
   <label for="name">Имя:</label>
-  <input type="text" id="name" name="name"  required>
+  <input type="text" id="name" name="name"   >
 
   <label for="email">E-mail:</label>
-  <input type="email" id="email" name="email" required>
+  <input type="email" id="email" name="email"  >
 
   <label for="year">Год рождения:</label>
-  <select id="year" name="year" required>
+  <select id="year" name="year"  >
     <option value="">Выберите год</option>
     <option value="2006">2006</option>
     <option value="2005">2005</option>
@@ -117,12 +117,12 @@ input:required, select:required, textarea:required {
   </select>
 
   <label>Пол:</label>
-  <input type="radio" id="male" name="gender" value="0" required>Мужской<br>
-  <input type="radio" id="female" name="gender" value="1" required>Женский<br>
+  <input type="radio" id="male" name="gender" value="0"  >Мужской<br>
+  <input type="radio" id="female" name="gender" value="1"  >Женский<br>
 
   <label>Количество конечностей:</label>
-  <input type="radio" id="two" name="limbs" value="2" required>2<br>
-  <input type="radio" id="four" name="limbs" value="4" required>4<br>
+  <input type="radio" id="two" name="limbs" value="2"  >2<br>
+  <input type="radio" id="four" name="limbs" value="4"  >4<br>
   
 
   <label for="superpowers">Сверхспособности:</label>
@@ -135,7 +135,7 @@ input:required, select:required, textarea:required {
   <label for="bio">Биография:</label>
   <textarea id="bio" name="bio" rows="6"></textarea>
 
-  <label for="contract"><input type="checkbox" id="contract" name="contract" required>Я согласен с условиями контракта</label>
+  <label for="contract"><input type="checkbox" id="contract" name="contract"  >Я согласен с условиями контракта</label>
   
 
   <button type="submit">Отправить</button>
