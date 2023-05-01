@@ -70,13 +70,13 @@ $db = new PDO('mysql:host=localhost;dbname=u52814', $user, $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 try {
   $stmt = $db->prepare("INSERT INTO application SET namee = ?, email = ?, godrod = ?, pol = ?, konech = ?, biogr = ?");
-  $stmt->execute([$_POST['name'], $_POST['email'], $_POST['year'], $_POST['gender'], $_POST['kon'], $_POST['bio']]);
+  $stmt->execute([$_POST['name'], $_POST['email'], $_POST['year'], $_POST['gender'], $_POST['limbs'], $_POST['bio']]);
   //foreach ($_POST['abilities'] as $ability)
   //{
   //  print($ability);
   //}
   $max_id_z = ($db->lastInsertId());
-  foreach ($_POST['abilities'] as $ability) {
+  foreach ($_POST['superpowers'] as $ability) {
     //print($ability);
     //$stmt = $db->prepare("INSERT INTO sposob SET tip = ? ");
     //$stmt->execute([$_POST['$ability']]);
