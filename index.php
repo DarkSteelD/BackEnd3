@@ -69,53 +69,38 @@ $pass = '2697434'; // Заменить на пароль, такой же, ка�
 $db = new PDO('mysql:host=localhost;dbname=u52814', $user, $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 try {
-  $stmt = $db->prepare("INSERT INTO application SET name = ?, email = ?, year = ?, gender = ?, limbs = ?, bio = ?");
-  $stmt->execute([$_POST['name'], $_POST['email'], $_POST['year'], $_POST['gender'], $_POST['limbs'], $_POST['bio']]);
-  if(!$stmt){
-    print('Error - '. $stmt->errorInfo());
+  $stmt = $db->prepare("INSERT INTO application SET namee = ?, email = ?, godrod = ?, pol = ?, konech = ?, biogr = ?");
+  $stmt->execute([$_POST['name'], $_POST['email'], $_POST['year'], $_POST['gender'], $_POST['kon'], $_POST['bio']]);
+  //foreach ($_POST['abilities'] as $ability)
+  //{
+  //  print($ability);
+  //}
+  $max_id_z = ($db->lastInsertId());
+  foreach ($_POST['abilities'] as $ability) {
+    //print($ability);
+    //$stmt = $db->prepare("INSERT INTO sposob SET tip = ? ");
+    //$stmt->execute([$_POST['$ability']]);
+    $stmt = $db->prepare("INSERT INTO abilities SET tip = :mytip");
+    $stmt->bindParam(':mytip', $ability);
+    $stmt->execute();
+
+    $max_id_s = ($db->lastInsertId());
+
+    $stmt = $db->prepare("INSERT INTO sv (id_z, id_s) VALUES (:myidz, :myids)");
+    $stmt->bindParam(':myids', $max_id_s);
+    $stmt->bindParam(':myidz', $max_id_z);
+    $stmt->execute();
   }
-}catch(PDOException $e){
+  
+}
+catch(PDOException $e){
   print('Error : ' . $e->getMessage());
   exit();
 }
-$application_id = $db->lastInsertId();
-$superpowers = $_POST['superpowers'];
-foreach ($superpowers as $ability) {
-  try{
-      $sql = 'INSERT INTO collect (user_id, ability) VALUES (:user_id, :ability)';
-      $stmt = $pdo->prepare($sql);
-      $stmt->execute([$application_id,$ability]);
-
-
-      $sql = 'INSERT INTO collect (user_id, ability) VALUES (:user_id, :ability)';
-      $stmt = $db->prepare($sql);
-      $stmt->execute(['user_id' => $application_id, 'ability' => $ability]);
-      
-      if($stmt->rowCount() > 0) {
-        print( "New record created successfully");
-      } else {
-        print( "Error: " . $sql . "<br>" . mysqli_error($conn));
-      }
-     // $stmt = $db->prepare("INSERT INTO sv SET id = ?, id2 = ?");
-     // $stmt->execute([$id,$_POST['superpowers']]);]
-      // if (mysqli_query($stmt, $sql)) {
-      //   echo "New record created successfully";
-      // } else {
-      //  echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-
-      // }
-      //    var_dump($_POST);
-      // if(!$stmt){
-      //   print('Error - ' . $stmt->errorInfo());
-      // }  
-  } catch(PDOException $e) {
-   print('Error : ' . $e->getMessage());
-    exit();
-  }
 
   //foreach () {
     
-}
+
 //}
 
 
