@@ -120,35 +120,35 @@ input: , select: , textarea:  {
   <form action = "index.php" method="POST">
     
           <label>
-            Имя:<br />
+            Имя:
             <input name="name" <?php if ($errors['name']) {print 'class="error"';} ?> value="<?php print $values['name']; ?>" />
-          </label><br />
+          </label>
       
         <label>
-            e-mail:<br />
+            e-mail:
             <input name="email" <?php if ($errors['email']) {print 'class="error"';} ?> value="<?php print $values['email']; ?>" type="email" />
-        </label><br />
+        </label>
       
        <label>
-            Год рождения:<br />
+            Год рождения:v
             <label><input type="radio" name="year" value = "2006" <?php print($errors['year'] ? 'class="error"' : '');?> <?php if ($values['year']=='2006') print 'checked';?>/> 2006 </label>
             <label><input type="radio" name="year" value = "2005" <?php print($errors['year'] ? 'class="error"' : '');?> <?php if ($values['year']=='2005') print 'checked';?>/> 2005 </label>
             <label><input type="radio" name="year" value = "2004" <?php print($errors['year'] ? 'class="error"' : '');?> <?php if ($values['year']=='2004') print 'checked';?>/> 2004 </label>
-        </label><br />
+        </label>
      
         <label>
-            Пол: <br />
+            Пол:
             <label><input type="radio" name="gender" value = "2" <?php print($errors['gender'] ? 'class="error"' : '');?> <?php if ($values['gender']=='2') print 'checked';?>/> женский </label>
-            <label><input type="radio" name="gender" value = "1" <?php print($errors['gender'] ? 'class="error"' : '');?> <?php if ($values['gender']=='1') print 'checked';?>/> мужской </label> <br />
+            <label><input type="radio" name="gender" value = "1" <?php print($errors['gender'] ? 'class="error"' : '');?> <?php if ($values['gender']=='1') print 'checked';?>/> мужской </label> 
         </label>
       
           <label>
-            Выберите количество конечностей: <br />
+            Выберите количество конечностей:
             <label><input type="radio" name="limbs" value = "2" <?php print($errors['limbs'] ? 'class="error"' : '');?> <?php if ($values['limbs']=='2') print 'checked';?>/> 2 </label>
             <label><input type="radio" name="limbs" value = "4" <?php print($errors['limbs'] ? 'class="error"' : '');?> <?php if ($values['limbs']=='4') print 'checked';?>/> 4 </label>
       
           <label>
-            Выберите желаемые сверхспособности: <br />
+            Выберите желаемые сверхспособности: 
             <select name="ability[]" multiple="multiple" <?php print($errors['ability'] ? 'class="error"' : '');?>>
               <option value="intangibility" <?php print(in_array('intangibility', $values['ability']) ? 'selected ="selected"' : '');?>>Хождение сковзь стены</option>
               <option value="immortality" <?php print(in_array('immortality', $values['ability']) ? 'selected ="selected"' : '');?>>Бессмертие</option>
@@ -157,15 +157,15 @@ input: , select: , textarea:  {
           </label>
       
         <label>
-            Биография :<br />
+            Биография :
             
             <textarea name="bio" <?php print($errors['bio'] ? 'class="error"' : '');?> value = "<?php print $values['bio']; if (empty($values['bio'])) print('Empty Bio')?>"></textarea>
-        </label><br />
+        </label>
       
         <label>
-            Чекбокс: <br />
+            Чекбокс:
             <label><input type="checkbox" checked="checked" name="check" /> С контрактом ознакомлен</label>
-        </label> <br />
+        </label>
       
     <input type="submit" value="Отправить">
   </form>
