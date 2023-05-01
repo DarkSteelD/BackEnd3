@@ -117,7 +117,7 @@ input: , select: , textarea:  {
   </select>
 
   <label>Пол:</label>
-  <input type="radio" id="male" name="gender" value="0"  >Мужской<br>
+  <input type="radio" id="male" name="gender" value="2"  >Мужской<br>
   <input type="radio" id="female" name="gender" value="1"  >Женский<br>
 
   <label>Количество конечностей:</label>
