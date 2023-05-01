@@ -131,9 +131,9 @@ input: , select: , textarea:  {
 
   <label for="year">Год рождения:</label>
   <select id="year" name="year"  >
-    <input type="radio" name="year" value = "2006" <?php print($errors['year'] ? 'class="error"' : '');?> <?php if ($values['year']=='2006') print 'checked';?>/> 2006 
-    <input type="radio" name="year" value = "2005" <?php print($errors['year'] ? 'class="error"' : '');?> <?php if ($values['year']=='2005') print 'checked';?>/> 2005
-    <input type="radio" name="year" value = "2004" <?php print($errors['year'] ? 'class="error"' : '');?> <?php if ($values['year']=='2004') print 'checked';?>/> 2004
+    <option  name="year" value = "2006" <?php print($errors['year'] ? 'class="error"' : '');?> <?php if ($values['year']=='2006') print 'checked';?>/> 2006 
+    <option  name="year" value = "2005" <?php print($errors['year'] ? 'class="error"' : '');?> <?php if ($values['year']=='2005') print 'checked';?>/> 2005
+    <option  name="year" value = "2004" <?php print($errors['year'] ? 'class="error"' : '');?> <?php if ($values['year']=='2004') print 'checked';?>/> 2004
     <!-- и так далее -->
   </select>
 
