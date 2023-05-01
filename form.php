@@ -139,8 +139,7 @@ input:required, select:required, textarea:required {
   
 
   <button type="submit">Отправить</button>
-  <?php setcookie($name="username", $value=name, strtotime( '+1 day' ), $path=false,
-$domain, $secure=true, $httponly=true);?>
+ 
 </form>
 
 </body>
