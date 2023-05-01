@@ -102,7 +102,7 @@ input:required, select:required, textarea:required {
   <h1 style="text-align: center;"> Набор героев</h1>
   <form action="index.php" method="POST">
   <label for="name">Имя:</label>
-  <input type="text" id="name" name="name" value=$_COOKIE[username]; required>
+  <input type="text" id="name" name="name"  required>
 
   <label for="email">E-mail:</label>
   <input type="email" id="email" name="email" required>
@@ -117,8 +117,8 @@ input:required, select:required, textarea:required {
   </select>
 
   <label>Пол:</label>
-  <input type="radio" id="male" name="gender" value="male" required>Мужской<br>
-  <input type="radio" id="female" name="gender" value="female" required>Женский<br>
+  <input type="radio" id="male" name="gender" value="0" required>Мужской<br>
+  <input type="radio" id="female" name="gender" value="1" required>Женский<br>
 
   <label>Количество конечностей:</label>
   <input type="radio" id="two" name="limbs" value="2" required>2<br>
