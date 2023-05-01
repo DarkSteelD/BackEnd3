@@ -67,16 +67,13 @@ if ($errors) {
 $user = 'dalertry'; // Заменить на ваш логин uXXXXX
 $pass = '2UNL11wP%K1VQXQ8'; // Заменить на пароль, такой же, как от SSH
 $db = new PDO('mysql:host=localhost;dbname=dalertry', $user, $pass,
-  [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); // Заменить test на имя БД, совпадает с логином uXXXXX
- //print('Вход в бд.<br/>');
-// Подготовленный запрос. Не именованные метки.
+  [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 try {
   $stmt = $db->prepare("INSERT INTO application SET name = ?, email = ?, year = ?, gender = ?, limbs = ?, bio = ?");
   $stmt->execute([$_POST['name'], $_POST['email'], $_POST['year'], $_POST['gender'], $_POST['limbs'], $_POST['bio']]);
   if(!$stmt){
     print('Error - '. $stmt->errorInfo());
   }
-  //print('Вход в бд2.<br/>');
 }catch(PDOException $e){
   print('Error : ' . $e->getMessage());
   exit();
@@ -97,7 +94,7 @@ foreach ($superpowers as $ability) {
       if($stmt->rowCount() > 0) {
         print( "New record created successfully");
       } else {
-        print( "Error: " . $sql . "<br>" . mysqli_error($conn);
+        print( "Error: " . $sql . "<br>" . mysqli_error($conn));
       }
      // $stmt = $db->prepare("INSERT INTO sv SET id = ?, id2 = ?");
      // $stmt->execute([$id,$_POST['superpowers']]);]
