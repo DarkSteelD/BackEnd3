@@ -138,7 +138,7 @@ input: , select: , textarea:  {
   </select>
 
   <label>Пол:</label>
-  input type="radio" name="gender" value = "2" <?php print($errors['gender'] ? 'class="error"' : '');?> <?php if ($values['gender']=='2') print 'checked';?>/> Женский<br>
+  <input type="radio" name="gender" value = "2" <?php print($errors['gender'] ? 'class="error"' : '');?> <?php if ($values['gender']=='2') print 'checked';?>/> Женский<br>
   <input type="radio" name="gender" value = "1" <?php print($errors['gender'] ? 'class="error"' : '');?> <?php if ($values['gender']=='1') print 'checked';?>/> Мужской <br>
 
   <label>Количество конечностей:</label>
