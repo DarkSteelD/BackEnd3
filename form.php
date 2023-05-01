@@ -126,7 +126,7 @@ input: , select: , textarea:  {
   
 
   <label for="superpowers">Сверхспособности:</label>
-  <select id="superpowers" name="superpowers"  multiple="multiple">
+  <select id="superpowers" name="superpowers[]"  multiple="multiple">
     <option value="immortality" selected="selected">Бессмертие</option>
     <option value="intangibility">Прохождение сквозь стены</option>
     <option value="levitation">Левитация</option>
