@@ -77,7 +77,7 @@ try {
   //}
   $max_id_z = ($db->lastInsertId());
   foreach ($_POST['superpowers'] as $ability) {
-    //print($ability);
+    print($max_id_z);
     //$stmt = $db->prepare("INSERT INTO sposob SET tip = ? ");
     //$stmt->execute([$_POST['$ability']]);
     $stmt = $db->prepare("INSERT INTO abilities SET tip = :mytip");
