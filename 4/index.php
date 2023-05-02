@@ -148,7 +148,7 @@ else{
   }
 
   foreach ($_POST['ability'] as $ability) {
-    if (!in_array($ability, ['stenchod', 'nevidim', 'levitat'])) {
+    if (!in_array($ability, ['intangibility', 'immortality', 'levitation'])) {
       setcookie('ability_error', '1', time() + 24 * 60 * 60);
       $errors = TRUE;
       break;
