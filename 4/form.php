@@ -7,6 +7,9 @@
     <title>Superhero Registration Form</title>
     <style>
 /* Общие стили формы */
+.error {
+  border: 2px solid red;
+}
 form {
   width: 80%;
   margin: 0 auto;
