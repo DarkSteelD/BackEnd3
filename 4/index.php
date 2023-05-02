@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   $values['gender'] = empty($_COOKIE['gender_value']) ? '' : $_COOKIE['gender_value'];
   $values['limbs'] = empty($_COOKIE['limbs']) ? '' : $_COOKIE['limbs_value'];
   $values['bio'] = empty($_COOKIE['bio_value']) ? '' : $_COOKIE['bio_value'];
-  $values['ability'] = empty($_COOKIE['ability_value']) ? array() : json_encode($_COOKIE['ability_value']);
+  $values['ability'] = empty($_COOKIE['ability_value']) ? array() : json_decode($_COOKIE['ability_value']);
   $values['check'] = empty($_COOKIE['check_value']) ? '' : $_COOKIE['check_value'];
 
   include('form.php');
@@ -91,10 +91,8 @@ else{
   $errors = FALSE;
   if (empty($_POST['name'])) {
     
-    setcookie('name_error', '1', time() + 24 * 60 * 60);
-    $errors = TRUE;
-  }
-  else {
+    setcookie('name_error', '1', time() + 24 * 60 * 60); $errors = TRUE; }
+    else {
 
     setcookie('name_value', $_POST['name'], time() + 30 * 24 * 60 * 60);
   }
@@ -157,7 +155,7 @@ else{
     }
   }
   if (!empty($_POST['ability'])) {
-    setcookie('ability_value', json_decode($_POST['ability']), time() + 24 * 60 * 60);
+    setcookie('ability_value', json_encode($_POST['ability']), time() + 24 * 60 * 60);
   }
   else{
     setcookie('ability_error', '1', time() + 24 * 60 * 60);
