@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 else{
   
   $errors = FALSE;
-  if (empty($_POST['name'])) {
+if (empty($_POST['name']) || !preg_match('/^([a-zA-Z\'\-]+\s*|[а-яА-ЯёЁ\'\-]+\s*)$/u', $_POST['name'])) {
     
     setcookie('name_error', '1', time() + 24 * 60 * 60); $errors = TRUE; }
     else {
@@ -97,7 +97,7 @@ else{
     setcookie('name_value', $_POST['name'], time() + 30 * 24 * 60 * 60);
   }
 
-  if (empty($_POST['year']) || !is_numeric($_POST['year'])) {
+if (empty($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year'])) {
     
     setcookie('year_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
@@ -107,7 +107,7 @@ else{
     setcookie('year_value', $_POST['year'], time() + 30 * 24 * 60 * 60);
   }
 
-  if (empty($_POST['email']) || !preg_match("*@*", $_POST['email'])) {
+if (empty($_POST['email'] || FILTER_VALIDATE_EMAIL($_POST['email']) || !preg_match('/^((([0-9A-Za-z]{1}[-0-9A-z\.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я\.]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/u', $_POST['email'])) { // На случай если нельхя библиотеки
     
     setcookie('email_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
@@ -117,7 +117,7 @@ else{
     setcookie('email_value', $_POST['email'], time() + 30 * 24 * 60 * 60);
   }
 
-  if (empty($_POST['gender'])) {
+if (empty($_POST['gender']) || !($_POST['gender']=='female' || $_POST['gender']=='male')) {
     
     setcookie('gender_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
@@ -127,7 +127,7 @@ else{
     setcookie('gender_value', $_POST['gender'], time() + 30 * 24 * 60 * 60);
   }
 
-  if (empty($_POST['limbs'])) {
+if (empty($_POST['limbs']) || !is_numeric($_POST['limbs']) || ($_POST['amount_of_limbs']==2) || ($_POST['amount_of_limbs']==4))  {
     
     setcookie('limbs_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
@@ -137,7 +137,7 @@ else{
     setcookie('limbs_value', $_POST['limbs'], time() + 30 * 24 * 60 * 60);
   }
   
-  if (empty($_POST['bio'])) {
+if (empty($_POST['bio']) || !preg_match('/^([a-zA-Z\'\-]+\s*|[а-яА-ЯёЁ\'\-]+\s*)$/u', $_POST['bio'])) {
     
     setcookie('bio_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
