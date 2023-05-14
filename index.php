@@ -20,44 +20,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 // Проверяем ошибки.
 $errors = FALSE;
-if (empty($_POST['name'])) {
+if (empty($_POST['name']) || !preg_match('/^([a-zA-Z\'\-]+\s*|[а-яА-ЯёЁ\'\-]+\s*)$/u', $_POST['name'])) {
   print('Заполните имя.<br/>');
   $errors = TRUE;
 }
-
 if (empty($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/', $_POST['year'])) {
   print('Заполните год.<br/>');
   $errors = TRUE;
 }
 
-if (empty($_POST['email'])) {
+if (empty($_POST['email'] || FILTER_VALIDATE_EMAIL($_POST['email']) || !preg_match('/^((([0-9A-Za-z]{1}[-0-9A-z\.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я\.]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/u', $_POST['email'])) { // На случай если нельхя библиотеки
   print('Заполните email.<br/>');
   $errors = TRUE;
 }
 
-if (empty($_POST['gender'])) {
+if (empty($_POST['gender']) || !($_POST['gender']=='female' || $_POST['gender']=='male')) {
   print('Заполните гендер.<br/>');
   $errors = TRUE;
 }
-if (empty($_POST['limbs']) || !is_numeric($_POST['limbs'])) {
+if (empty($_POST['limbs']) || !is_numeric($_POST['limbs']) || ($_POST['amount_of_limbs']==2) || ($_POST['amount_of_limbs']==4))  {
   print('Заполните количество конечностей.<br/>');
   $errors = TRUE;
 }
-if (empty($_POST['superpowers'])) {
- print('Расскажите о своих способностях.<br/>');
+$abilities = [1 => 'immortality', 2 => 'intangibility', 3 => 'levitation'];
+if (empty($_POST['superpowers']) || !is_array($_POST['superpowers'])) {
  $errors = TRUE;
 }
-if (empty($_POST['bio'])) {
+else {
+foreach ($_POST['superpowers'] as $ability) {
+if (!in_array($ability, $abilities)) {
+ print('Расскажите о своих способностях.<br/>');
+  $errors = TRUE;
+  break;
+}
+if (empty($_POST['bio']) || !preg_match('/^([a-zA-Z\'\-]+\s*|[а-яА-ЯёЁ\'\-]+\s*)$/u', $_POST['bio'])) {
   print('Заполните биографию.<br/>');
   $errors = TRUE;
 }
-
-// *************
-// Тут необходимо проверить правильность заполнения всех остальных полей.
-// *************
-
 if ($errors) {
-  print('Ошибки.<br/>');
   // При наличии ошибок завершаем работу скрипта.
   exit();
 }
@@ -75,21 +75,23 @@ try {
   //{
   //  print($ability);
   //}
-  $max_id_z = ($db->lastInsertId());
-  foreach ($_POST['superpowers'] as $ability) {
-    print($max_id_z);
+  $id_user = ($db->lastInsertId());
+  foreach ($_POST['superpowers'] as $superpower) {
+   // print($max_id_z);
     //$stmt = $db->prepare("INSERT INTO sposob SET tip = ? ");
     //$stmt->execute([$_POST['$ability']]);
-    $stmt = $db->prepare("INSERT INTO abilities SET tip = :mytip");
-    $stmt->bindParam(':mytip', $ability);
-    $stmt->execute();
+    //$stmt = $db->prepare("INSERT INTO abilities SET tip = :mytip");
+    //$stmt->bindParam(':mytip', $superpower);
+    //$stmt->execute();
 
-    $max_id_s = ($db->lastInsertId());
-
+    //$max_id_s = ($db->lastInsertId());
+    $ability_key = array_search($superpower, $abilities);
+    if ($ability_key !== false) {
     $stmt = $db->prepare("INSERT INTO sv (id_z, id_s) VALUES (:myidz, :myids)");
-    $stmt->bindParam(':myids', $max_id_s);
-    $stmt->bindParam(':myidz', $max_id_z);
+    $stmt->bindParam(':myids', $ability_key + 1);
+    $stmt->bindParam(':myidz', $id_user);
     $stmt->execute();
+    }
   }
   
 }
