@@ -34,11 +34,11 @@ if (empty($_POST['email'])  || !preg_match('/^((([0-9A-Za-z]{1}[-0-9A-z\.]{1,}[0
   $errors = TRUE;
 }
 
-if (empty($_POST['gender']) || !($_POST['gender']=='female' || $_POST['gender']=='male')) {
+if (empty($_POST['gender']) || ($_POST['gender']=='female' || $_POST['gender']=='male')) {
   print('Заполните гендер.<br/>');
   $errors = TRUE;
 }
-if (empty($_POST['limbs']) || !is_numeric($_POST['limbs']) || ($_POST['limbs']==2) || ($_POST['limbs']==4))  {
+if (empty($_POST['limbs']) || !is_numeric($_POST['limbs']) || !($_POST['limbs']==2) || ($_POST['limbs']==4))  {
   print('Заполните количество конечностей.<br/>');
   $errors = TRUE;
 }
