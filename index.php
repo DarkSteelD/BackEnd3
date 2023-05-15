@@ -53,6 +53,8 @@ if (!in_array($ability, $abilities)) {
   $errors = TRUE;
   break;
 }
+}
+}
 if (empty($_POST['bio']) || !preg_match('/^([a-zA-Z\'\-]+\s*|[а-яА-ЯёЁ\'\-]+\s*)$/u', $_POST['bio'])) {
   print('Заполните биографию.<br/>');
   $errors = TRUE;
