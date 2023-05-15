@@ -34,7 +34,7 @@ if (empty($_POST['email'])  || !filter_var($_POST['email'], FILTER_VALIDATE_EMAI
   $errors = TRUE;
 }
 
-if (empty($_POST['gender']) || !($_POST['gender']=='female' || $_POST['gender']=='male')) {
+if (empty($_POST['gender']) || !($_POST['gender']=='Мужской' || $_POST['gender']=='Женский')) {
   print('Заполните гендер.<br/>');
   $errors = TRUE;
 }
