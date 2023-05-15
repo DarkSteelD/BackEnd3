@@ -90,7 +90,7 @@ try {
     $ability_key = array_search($superpower, $abilities);
     if ($ability_key !== false) {
     $stmt = $db->prepare("INSERT INTO sv (id_z, id_s) VALUES (:myidz, :myids)");
-    $stmt->bindParam(':myids', $ability_key + 1);
+    $stmt->bindParam(':myids', $ability_key);
     $stmt->bindParam(':myidz', $id_user);
     $stmt->execute();
     }
