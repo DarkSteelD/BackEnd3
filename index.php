@@ -38,7 +38,7 @@ if (empty($_POST['gender']) || !($_POST['gender']=='female' || $_POST['gender']=
   print('Заполните гендер.<br/>');
   $errors = TRUE;
 }
-if (empty($_POST['limbs']) || !is_numeric($_POST['limbs']) || ($_POST['amount_of_limbs']==2) || ($_POST['amount_of_limbs']==4))  {
+if (empty($_POST['limbs']) || !is_numeric($_POST['limbs']) || ($_POST['limbs']==2) || ($_POST['limbs']==4))  {
   print('Заполните количество конечностей.<br/>');
   $errors = TRUE;
 }
