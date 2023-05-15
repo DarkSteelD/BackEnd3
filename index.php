@@ -29,7 +29,7 @@ if (empty($_POST['year']) || !is_numeric($_POST['year']) || !preg_match('/^\d+$/
   $errors = TRUE;
 }
 
-if (empty($_POST['email'])  || !filter_var($email, FILTER_VALIDATE_EMAIL)) { 
+if (empty($_POST['email'])  || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) { 
   print('Заполните email.<br/>');
   $errors = TRUE;
 }
