@@ -162,7 +162,7 @@ input: , select: , textarea:  {
 
 
 
-  <label for="contract"><input type="checkbox" id="contract" name="check"  >Я согласен с условиями контракта</label>
+  <label for="contract"><input type="checkbox" id="contract" name="check" <?php if ($values['check'] == 'on') {print 'checked';} ?> >Я согласен с условиями контракта</label>
   <button type="submit">Отправить</button>
  
 </form>
