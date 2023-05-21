@@ -158,7 +158,8 @@ input: , select: , textarea:  {
   
 
   <label for="bio">Биография:</label>
-  <textarea name="bio" <?php print($errors['bio'] ? 'class="error"' : '');?> value = "<?php print $values['bio1']; if (empty($values['bio'])) print('Empty Bio')?>"></textarea>
+  <textarea name="bio" <?php if ($errors['bio']) {print 'class="error"';} ?>><?php print $values['bio']; ?></textarea>
+
 
 
   <label for="contract"><input type="checkbox" id="contract" name="check"  >Я согласен с условиями контракта</label>
